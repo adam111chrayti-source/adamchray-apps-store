@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجري الشخصي للتطبيقات</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #38bdf8;
+        }
+        .card p {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>تطبيقاتي الخاصة</h1>
+    <div class="subtitle">متجر التحميل المباشر والخفيف بصفر تعقيدات</div>
+
+    <div class="container" id="apps-container">
+        <!-- هنا سيتم عرض التطبيقات ديناميكياً أو يدوياً -->
+        <div class="card">
+            <div>
+                <h3>التطبيق التجريبي الأول</h3>
+                <p>هذا تطبيق تجريبي لفحص سرعة وسلاسة التحميل المباشر.</p>
+            </div>
+            <a href="#" class="btn">تحميل مباشر</a>
+        </div>
+    </div>
+
+</body>
+</html>
