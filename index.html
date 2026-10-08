@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adams App Store | متجري الشخصي</title>
+    <title>Adams App Store | المنصة الاحترافية للتطبيقات والأدوات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #07090e;
-            --surface-color: #0d1322;
-            --surface-hover: #162035;
+            --bg-color: #030712;
+            --surface-color: #0b0f19;
+            --surface-hover: #111827;
+            --modal-bg: #0f172a;
             --border-color: #1e293b;
             --border-hover: #3b82f6;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent-color: #3b82f6;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             --radius: 16px;
         }
 
@@ -33,34 +34,44 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 50px 20px;
+            padding: 60px 20px;
         }
 
         .header {
             text-align: center;
-            max-width: 700px;
-            margin-bottom: 35px;
+            max-width: 750px;
+            margin-bottom: 40px;
             animation: fadeIn 0.8s ease-out;
         }
 
-        .header .logo-icon {
-            font-size: 52px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
+        .header .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 6px 16px;
+            border-radius: 50px;
+            color: #60a5fa;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
 
         .header h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 10px;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            background: linear-gradient(to bottom, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            line-height: 1.5;
         }
 
         .search-container {
@@ -100,7 +111,7 @@
         .filters {
             display: flex;
             gap: 10px;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
             flex-wrap: wrap;
             justify-content: center;
             animation: fadeIn 1.1s ease-out;
@@ -110,7 +121,7 @@
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 8px 18px;
+            padding: 9px 20px;
             border-radius: 30px;
             cursor: pointer;
             font-size: 0.9rem;
@@ -126,7 +137,7 @@
 
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 24px;
             width: 100%;
             max-width: 1200px;
@@ -142,14 +153,14 @@
             flex-direction: column;
             justify-content: space-between;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
             position: relative;
-            overflow: hidden;
         }
 
         .card:hover {
             transform: translateY(-6px);
             border-color: var(--border-hover);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
         }
 
         .card-top {
@@ -160,14 +171,14 @@
         }
 
         .app-icon {
-            width: 54px;
-            height: 54px;
+            width: 58px;
+            height: 58px;
             background: var(--surface-hover);
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 26px;
             color: var(--accent-color);
             flex-shrink: 0;
             border: 1px solid var(--border-color);
@@ -176,7 +187,7 @@
         .app-info h3 {
             font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             color: var(--text-main);
         }
 
@@ -188,12 +199,30 @@
             align-items: center;
         }
 
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
         .card p {
             color: var(--text-muted);
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 24px;
             flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            gap: 10px;
         }
 
         .btn {
@@ -208,13 +237,97 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
+            flex-grow: 1;
             transition: opacity 0.2s, transform 0.2s;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
         }
 
         .btn:hover {
             opacity: 0.9;
-            transform: scale(1.02);
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--modal-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text-main);
+            border-color: var(--accent-color);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .modal-body h4 {
+            color: var(--text-main);
+            margin: 15px 0 8px 0;
+            font-size: 1.1rem;
         }
 
         .state-message {
@@ -232,21 +345,21 @@
 
         @media (max-width: 768px) {
             .header h1 { font-size: 2.2rem; }
-            body { padding: 20px 15px; }
+            body { padding: 30px 15px; }
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="logo-icon"><i class="fa-solid fa-store"></i></div>
+        <div class="logo-badge"><i class="fa-solid fa-shield-halved"></i> مصدر آمن وخاص 100%</div>
         <h1>Adams App Store</h1>
-        <p>منصتك الشخصية الآمنة لتحميل التطبيقات والأسطوانات البرمجية مباشرة وبدون تعقيدات.</p>
+        <p>المنصة المتقدمة لتوزيع التطبيقات والسكريبتات المباشرة بدون إعلانات أو قيود.</p>
     </div>
 
     <div class="search-container">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="search-input" placeholder="ابحث عن تطبيق، أداة، أو سكريبت...">
+        <input type="text" id="search-input" placeholder="ابحث في التطبيقات والأدوات...">
     </div>
 
     <div class="filters">
@@ -256,7 +369,17 @@
     </div>
 
     <div class="container" id="apps-container">
-        <div class="state-message">جاري تحميل التطبيقات...</div>
+        <div class="state-message">جاري تحميل المنصة...</div>
+    </div>
+
+    <!-- تفاصيل التطبيق المنبثقة (Modal) -->
+    <div class="modal-overlay" id="app-modal">
+        <div class="modal">
+            <div class="modal-close" id="modal-close-btn"><i class="fa-solid fa-xmark"></i></div>
+            <div class="modal-header" id="modal-header-content"></div>
+            <div class="modal-body" id="modal-body-content"></div>
+            <div id="modal-footer-content"></div>
+        </div>
     </div>
 
     <script>
@@ -274,7 +397,7 @@
                 document.getElementById('apps-container').innerHTML = `
                     <div class="state-message" style="color: #ef4444;">
                         <i class="fa-solid fa-triangle-exclamation" style="font-size: 32px; margin-bottom: 10px; display: block;"></i>
-                        عفواً، حدث خطأ أثناء جلب بيانات التطبيقات.
+                        عفواً، حدث خطأ أثناء تحميل بيانات التطبيقات.
                     </div>`;
             });
 
@@ -299,7 +422,7 @@
                 return;
             }
 
-            filtered.forEach(app => {
+            filtered.forEach((app, index) => {
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
@@ -311,21 +434,68 @@
                             <div class="app-info">
                                 <h3>${app.name}</h3>
                                 <div class="app-meta">
-                                    <span><i class="fa-solid fa-tag"></i> ${app.version || '1.0.0'}</span>
+                                    <span class="badge">${app.version || '1.0.0'}</span>
                                     <span>•</span>
-                                    <span><i class="fa-solid fa-hard-drive"></i> ${app.size || 'مباشر'}</span>
+                                    <span>${app.size || 'مباشر'}</span>
                                 </div>
                             </div>
                         </div>
                         <p>${app.description}</p>
                     </div>
-                    <a href="${app.url}" class="btn" target="_blank">
-                        <i class="fa-solid fa-download"></i> تحميل مباشر
-                    </a>
+                    <div class="card-footer">
+                        <a href="${app.url}" class="btn" target="_blank" onclick="event.stopPropagation()">
+                            <i class="fa-solid fa-download"></i> تحميل مباشر
+                        </a>
+                    </div>
                 `;
+                
+                // Open Modal on card click
+                card.addEventListener('click', () => openModal(app));
                 container.appendChild(card);
             });
         }
+
+        function openModal(app) {
+            const modalOverlay = document.getElementById('app-modal');
+            const headerContent = document.getElementById('modal-header-content');
+            const bodyContent = document.getElementById('modal-body-content');
+            const footerContent = document.getElementById('modal-footer-content');
+
+            headerContent.innerHTML = `
+                <div class="app-icon" style="width: 50px; height: 50px; font-size: 22px;">
+                    <i class="${app.icon || 'fa-solid fa-cube'}"></i>
+                </div>
+                <div>
+                    <h2 style="font-size: 1.4rem; color: #f8fafc; margin-bottom: 4px;">${app.name}</h2>
+                    <div style="font-size: 0.85rem; color: #94a3b8;">الإصدار: ${app.version || '1.0.0'} | الحجم: ${app.size || 'غير محدد'}</div>
+                </div>
+            `;
+
+            bodyContent.innerHTML = `
+                <h4 style="margin-top:0;">وصف التطبيق</h4>
+                <p>${app.description}</p>
+                ${app.changelog ? `<h4>سجل التحديثات</h4><p>${app.changelog}</p>` : ''}
+            `;
+
+            footerContent.innerHTML = `
+                <a href="${app.url}" class="btn" target="_blank" style="width: 100%; padding: 14px;">
+                    <i class="fa-solid fa-download"></i> بدء التحميل المباشر
+                </a>
+            `;
+
+            modalOverlay.classList.add('active');
+        }
+
+        // Close Modal events
+        document.getElementById('modal-close-btn').addEventListener('click', () => {
+            document.getElementById('app-modal').classList.remove('active');
+        });
+
+        document.getElementById('app-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'app-modal') {
+                document.getElementById('app-modal').classList.remove('active');
+            }
+        });
 
         // Search event
         document.getElementById('search-input').addEventListener('input', () => {
